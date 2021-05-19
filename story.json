@@ -1,0 +1,20 @@
+{
+    "story": [
+        {
+            "title": "=====The Beginning=====",
+	    "text": "You stumble into an old crumbling building, it is placed on a property that spans as far as you can see."	
+        },
+        {
+            "title": "Continuation of The Beginning",
+	    "text": "There is a rotting wooden door that you decide to wearily walk through."
+	},
+        {
+            "title": "=====First Room=====",
+	    "text": "You enter a room, there is three exits, a {ITEM_NAME} on the floor and a {ENEMY_NAME} in front of you!\nWhat will you do?"
+	},
+        {
+            "title": "null",
+	    "text": "null"
+	}
+    ]
+}

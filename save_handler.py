@@ -13,3 +13,7 @@ def load_save_data(save_dir):
 
 def append_save_data(save_append_data, save_dir):
     dump(save_append_data, open(f"./{save_dir}", "w"), indent=4)
+
+def load_story_data():
+    save_data = load(open(f"./story.json", "r"))
+    return save_data

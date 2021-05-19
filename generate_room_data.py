@@ -5,7 +5,7 @@ options_north = ["Walk north", "Head north", "Hike north", "Parade north"]
 options_east = ["Stagger east", "Run towards the rising sun", "Parade east"]
 options_west = ["Trudge west", "Head left", "Sprint west", "Run towards the western sea"]
 enemies = ["Goblin", "Ogre", "Evil Rat", "Giant Slime", "Demonic Ant", "null"] #null=no enemy
-items = ["Sword", "Shield", "Apple", "Banana", "Tinned beans", "null", "Dagger"] #null=no item
+items = ["Sword", "Shield", "Apple", "Banana", "Tinned beans", "Dagger"] #null=no item
 
 def generate_enemy_health(enemy):
     if enemy == "Goblin":
