@@ -1,2 +1,4 @@
 # School-TextBasedRPG
-A text-based game
+A text-based RPG game
+
+### Incomplete!
