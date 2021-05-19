@@ -1,2 +1,2 @@
 # School-TextBasedRPG
-This is a project for school.
+A text-based game
