@@ -60,7 +60,7 @@ def load_existing_save():
         option = input("Select save from list: ")
         if option + "_save.json" in saves_directories:
             save_dir = "saves/" + option + "_save.json"
-            print("=====Save datat loader=====")
+            print("=====Save data loader=====")
             save_data_loader(save_dir)
         else:
             print("Save does not exist, please select another!")
@@ -79,17 +79,20 @@ def save_data_loader(save_dir):
     global game_state
 
     print("Loading save data...")
+    print("Loaded save data")
+    print("=====Save data check=====")
     try:
         save_data = load_save_data(save_dir)
-        user_name = save_data["save"][0]["name"]
-        user_health = save_data["save"][0]["health"]
-        user_score = save_data["save"][0]["score"]
-        user_defeated_enemies = save_data["save"][0]["defeated_enemies"]
-        rooms_traversed = save_data["save"][0]["rooms_traversed"]
-        max_rooms = save_data["save"][0]["max_rooms"]
+        user_name = str(save_data["save"][0]["name"])
+        user_health = int(save_data["save"][0]["health"])
+        user_score = int(save_data["save"][0]["score"])
+        user_defeated_enemies = int(save_data["save"][0]["defeated_enemies"])
+        rooms_traversed = int(save_data["save"][0]["rooms_traversed"])
+        max_rooms = int(save_data["save"][0]["max_rooms"])
         user_inventory_items = save_data["save"][0]["inventory"]
         room_data = save_data["save"][0]["room_data"]
-        game_state = save_data["save"][0]["game_state"]
+        game_state = int(save_data["save"][0]["game_state"])
+        print("Save data valid!")
     except:
         print("Error, invalid save detected!")
         print("Deleting save...")
@@ -98,8 +101,7 @@ def save_data_loader(save_dir):
         print("=====Save selection=====")
         save_selection()        
         
-    print("Loaded save data")
-    validate_save_data()
+    #validate_save_data()
     start_game()
 
 def validate_save_data():
@@ -179,6 +181,7 @@ def delete_existing_save():
             delete_existing_save()
 
 def generate_room_data():
+    global room_data
     room_data = generate_room()
     save_data["save"][0]["room_data"] = room_data
     append_save_data(save_data, save_dir)
@@ -225,15 +228,12 @@ def start_game_story():
     print(story_data["story"][1]["text"])
     print(story_data["story"][2]["title"])
     print(story_data["story"][2]["text"].replace("{ITEM_NAME}", room_data["item"]).replace("{ENEMY_NAME}", room_data["enemy"]))
-    generate_room_data()
+    #generate_room_data()
     print("=====Make your choice!=====")
     game_option_selection(3, True)
 
 def game_option_selection(options_length: int, enemy_present: bool):
-    if enemy_present:
-        print("Placeholder, found enemy")
-    else:
-        print("Placeholder, enemy not found")
+    attack_enemy = False
     
     if options_length == 2:
         print("1: " + room_data["option_one"])
@@ -282,8 +282,12 @@ def game_option_selection(options_length: int, enemy_present: bool):
         exit()
 
     if attack_enemy:
-        print("Placeholder, attacked an enemy")
+        print("=====Attacking enemy=====")
+        game_option_attack_enemy(room_data["enemy"], room_data["enemy_health"])
     else:
-        print(f"You have decided to {selected_option.lower()}.")
+        print(f"You decided to {selected_option.lower()}.")
+
+def game_option_attack_enemy(enemy: str, enemy_health: int):
+    print(f"Placeholder, attacking enemy. Enemy: {enemy}, Enemy Health: {enemy_health}")
 
 load_game()
