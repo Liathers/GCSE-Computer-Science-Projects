@@ -301,5 +301,7 @@ def game_option_attack_enemy(enemy: str, enemy_health: int):
                 enemy_health -= attackInt
         else:
             print("Placeholder")
+            damage = 0 #placeholder value
+            print(f"The {enemy} dodged your attack and dealt {damages} damage to you!")
 
 load_game()
