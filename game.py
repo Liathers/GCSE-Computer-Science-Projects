@@ -1,6 +1,7 @@
 from save_handler import create_save, append_save_data, load_save_data, load_story_data
 from generate_room_data import generate_room
 from os import makedirs, listdir, path, remove, system
+from random import randint as randInt
 
 save_dir = ""
 user_name = ""
@@ -289,5 +290,16 @@ def game_option_selection(options_length: int, enemy_present: bool):
 
 def game_option_attack_enemy(enemy: str, enemy_health: int):
     print(f"Placeholder, attacking enemy. Enemy: {enemy}, Enemy Health: {enemy_health}")
+    if enemy_health > 5:
+        attackInt = randInt(0, enemy_health - 5)
+        damageInt = randInt(0, 1)
+        if damageInt == 0:
+            if attackInt == 0:
+                print("Oh no, you missed!")
+            else:
+                print(f"Woohoo! You dealt {attackInt} damage to the {enemy}")
+                enemy_health -= attackInt
+        else:
+            print("Placeholder")
 
 load_game()
