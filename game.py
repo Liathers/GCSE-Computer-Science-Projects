@@ -102,7 +102,7 @@ def save_data_loader(save_dir):
         print("=====Save selection=====")
         save_selection()        
         
-    #validate_save_data()
+    validate_save_data()
     start_game()
 
 def validate_save_data():
@@ -289,19 +289,20 @@ def game_option_selection(options_length: int, enemy_present: bool):
         print(f"You decided to {selected_option.lower()}.")
 
 def game_option_attack_enemy(enemy: str, enemy_health: int):
+    global user_health
     print(f"Placeholder, attacking enemy. Enemy: {enemy}, Enemy Health: {enemy_health}")
-    if enemy_health > 5:
-        attackInt = randInt(0, enemy_health - 5)
-        damageInt = randInt(0, 1)
+    if enemy_health > 0:
+        attackInt = randInt(0, enemy_health)
+        damageInt = randInt(0, user_health)
         if damageInt == 0:
             if attackInt == 0:
                 print("Oh no, you missed!")
             else:
-                print(f"Woohoo! You dealt {attackInt} damage to the {enemy}")
+                print(f"Woohoo! You dealt {attackInt} damage to the {enemy}.")
                 enemy_health -= attackInt
         else:
-            print("Placeholder")
-            damage = 0 #placeholder value
-            print(f"The {enemy} dodged your attack and dealt {damages} damage to you!")
+            user_health -= damageInt
+            print(f"The {enemy} dodged your attack and dealt {damageInt} damage to you!")
+            print(f"Your health is now {user_health}.")
 
 load_game()
