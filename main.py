@@ -1,5 +1,6 @@
 from random import randint as genint
 from json import dump, load
+
 player_1 = ""
 player_2 = ""
 player_1_score = 0
@@ -7,7 +8,7 @@ player_2_score = 0
 dice_result = 0
 total_rolls = 1
 finished_rolling_dice = False
-# "save": []
+even_numbers = [2, 4, 6, 8, 10, 12]
 
 def main():
     global total_rolls
@@ -46,18 +47,18 @@ def dice_roll(player_name: str, score: int):
     print(f"The 1st dice rolled a {dice_result_1}!")
     print(f"The 2nd dice rolled a {dice_result_2}!")
     score += total_result
-    if total_result == 2 or total_result == 4 or total_result == 6 or total_result == 8 or total_result == 10 or total_result == 12:
+    if total_result in even_numbers:
         score += 10
     else:
         if score >= 0:
             score -= 5
     print(f"{player_name}'s current score is {score}!")
-    print()
-    return score
-    
     if dice_result_1 == dice_result_2:
         print("A double was rolled, the dice will be rolled again!")
+        print()
         dice_roll(player_name, score)
+    print()
+    return score
 
 def handle_scores(saving: bool, name: str, score: int):
     def create_save():
@@ -76,9 +77,9 @@ def handle_scores(saving: bool, name: str, score: int):
         data["save"].append(
             {
                 "name": name,
-                "score": score
+                "score": int(score)
             })
-        dump(data, open(f"./scores.json", "w"), indent=4)
+        dump(data, open(f"./scores.json", "w"), indent=4, sort_keys=True)
             
     if saving == True:
         create_save()
@@ -90,26 +91,36 @@ def handle_scores(saving: bool, name: str, score: int):
 def print_top_scores():
     print("=====Top Scores=====")
     data = handle_scores(False, None, None)
+    data['save'] = sorted(data['save'], key=lambda x : x['score'], reverse=True)
     try:
         name_1 = data["save"][0]['name']
         score_1 = data["save"][0]['score']
-        name_2 = data["save"][1]['name']
-        score_2 = data["save"][1]['score']
-        name_3 = data["save"][2]['name']
-        score_3 = data["save"][2]['score']
-        name_4 = data["save"][3]['name']
-        score_4 = data["save"][3]['score']
-        name_5 = data["save"][4]['name']
-        score_5 = data["save"][4]['score']
-        
         print(f"1st place is {name_1} with a score of {score_1}.")
-        print(f"2nd place is {name_2} with a score of {score_2}.")
-        print(f"3rd place is {name_3} with a score of {score_3}.")
-        print(f"4th place is {name_4} with a score of {score_4}.")
-        print(f"5th place is {name_5} with a score of {score_5}.")
+        try:
+            name_2 = data["save"][1]['name']
+            score_2 = data["save"][1]['score']
+            print(f"2nd place is {name_2} with a score of {score_2}.")
+            try:
+                name_3 = data["save"][2]['name']
+                score_3 = data["save"][2]['score']
+                print(f"3rd place is {name_3} with a score of {score_3}.")
+                try:
+                    name_4 = data["save"][3]['name']
+                    score_4 = data["save"][3]['score']
+                    print(f"4th place is {name_4} with a score of {score_4}.")
+                    try:
+                        name_5 = data["save"][4]['name']
+                        score_5 = data["save"][4]['score']
+                        print(f"5th place is {name_5} with a score of {score_5}.")
+                    except:
+                        pass
+                except:
+                    pass
+            except:
+                pass
+        except:
+            pass
     except:
-        print("!!Temporary error catch!!")
-        print(f"Data: {data}")
-    
+        print("This is unexpected!")
 
 main()
