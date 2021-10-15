@@ -1,6 +1,4 @@
-# SchoolProjects
-These are my programming projects from school.
-Each project can be found on a different branch contained within this repository.
+# School-DiceRoll
+A simple dice rolling program
 
-## Current projects:
-- TextBasedRPG
+### Incomplete!
