@@ -10,6 +10,7 @@ dice_result = 0
 total_rolls = 1
 finished_rolling_dice = False
 even_numbers = [2, 4, 6, 8, 10, 12]
+valid_sides = [6, 10, 20]
 
 def main():
     global dice_sides
@@ -26,8 +27,11 @@ def main():
         main()
     while dice_sides == 0:
         print("=====How many sides?=====")
-        dice_sides = int(input("Do you want a 6, 10 or a 20 sided dice? "))
-        if dice_sides != 6 and dice_sides != 10 and dice_sides != 20:
+        
+        print(f"Allowed values are the following: ")
+        for x in range(len(valid_sides)): print(">" + str(valid_sides[x]))
+        dice_sides = int(input("How many sides do you want? "))
+        if dice_sides not in valid_sides:
             print("That is an invalid input")
             dice_sides = 0
     while finished_rolling_dice == False:
