@@ -103,35 +103,16 @@ def print_top_scores():
     data = handle_scores(False, None, None)
     print("=====Top Scores=====")
     data['save'] = sorted(data['save'], key=lambda x : x['score'], reverse=True)
-    try:
-        name_1 = data["save"][0]['name']
-        score_1 = data["save"][0]['score']
-        print(f"1st place is {name_1} with a score of {score_1}.")
-        try:
-            name_2 = data["save"][1]['name']
-            score_2 = data["save"][1]['score']
-            print(f"2nd place is {name_2} with a score of {score_2}.")
-            try:
-                name_3 = data["save"][2]['name']
-                score_3 = data["save"][2]['score']
-                print(f"3rd place is {name_3} with a score of {score_3}.")
-                try:
-                    name_4 = data["save"][3]['name']
-                    score_4 = data["save"][3]['score']
-                    print(f"4th place is {name_4} with a score of {score_4}.")
-                    try:
-                        name_5 = data["save"][4]['name']
-                        score_5 = data["save"][4]['score']
-                        print(f"5th place is {name_5} with a score of {score_5}.")
-                    except:
-                        pass
-                except:
-                    pass
-            except:
-                pass
-        except:
-            pass
-    except:
-        print("This is unexpected!")
+    for x in range(5):
+        name = data["save"][x]["name"]
+        score = data["save"][x]["score"]
+        suffix = ""
+        
+        if x+1 == 1: suffix = "st"
+        elif x+1 == 2: suffix = "nd"
+        elif x+1 == 3: suffix = "rd"
+        else: suffix = "th"
+          
+        print(f"{x+1}{suffix} place is {name} with a score of {score}.")
 
 main()
