@@ -5,12 +5,14 @@ player_1 = ""
 player_2 = ""
 player_1_score = 0
 player_2_score = 0
+dice_sides = 0
 dice_result = 0
 total_rolls = 1
 finished_rolling_dice = False
 even_numbers = [2, 4, 6, 8, 10, 12]
 
 def main():
+    global dice_sides
     global total_rolls
     global player_1_score
     global player_2_score
@@ -22,6 +24,12 @@ def main():
     if player_1 == player_2:
         print("Error: player names identical")
         main()
+    while dice_sides == 0:
+        print("=====How many sides?=====")
+        dice_sides = int(input("Do you want a 6, 10 or a 20 sided dice? "))
+        if dice_sides != 6 and dice_sides != 10 and dice_sides != 20:
+            print("That is an invalid input")
+            dice_sides = 0
     while finished_rolling_dice == False:
         print(f"=====Dice Roll: Round {total_rolls}=====")
         player_1_score = dice_roll(player_1, player_1_score)
@@ -33,16 +41,18 @@ def main():
         print("All of the die have been rolled!")
         if player_1_score > player_2_score:
             print(f"The player with the highest score is {player_1} with {player_1_score} points!")
+            print("")
             handle_scores(True, player_1, player_1_score)
         else:
             print(f"The player with the highest score is {player_2} with {player_2_score} points!")
+            print("")
             handle_scores(True, player_2, player_2_score)
         print_top_scores()
 
 def dice_roll(player_name: str, score: int):
     print(f"Rolling dice for {player_name}...")
-    dice_result_1 = genint(1,6)
-    dice_result_2 = genint(1,6)
+    dice_result_1 = genint(1,dice_sides)
+    dice_result_2 = genint(1,dice_sides)
     total_result = dice_result_1 + dice_result_2
     print(f"The 1st dice rolled a {dice_result_1}!")
     print(f"The 2nd dice rolled a {dice_result_2}!")
@@ -66,6 +76,7 @@ def handle_scores(saving: bool, name: str, score: int):
             save = open("./scores.json", "x")
             save.write('{"save": []}')
             save.close
+            print("Save created")
         except:
             print("Save located")
     
@@ -84,13 +95,13 @@ def handle_scores(saving: bool, name: str, score: int):
     if saving == True:
         create_save()
         append_score()
-        print(load_data())
+        #print(load_data())
     if saving == False:
         return load_data()
 
 def print_top_scores():
-    print("=====Top Scores=====")
     data = handle_scores(False, None, None)
+    print("=====Top Scores=====")
     data['save'] = sorted(data['save'], key=lambda x : x['score'], reverse=True)
     try:
         name_1 = data["save"][0]['name']
