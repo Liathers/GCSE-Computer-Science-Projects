@@ -108,9 +108,9 @@ def print_top_scores():
         score = data["save"][x]["score"]
         suffix = ""
         
-        if x+1 == 1: suffix = "st"
-        elif x+1 == 2: suffix = "nd"
-        elif x+1 == 3: suffix = "rd"
+        if x == 0: suffix = "st"
+        elif x == 1: suffix = "nd"
+        elif x == 2: suffix = "rd"
         else: suffix = "th"
           
         print(f"{x+1}{suffix} place is {name} with a score of {score}.")
