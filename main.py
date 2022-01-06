@@ -108,15 +108,18 @@ def print_top_scores():
     print("=====Top Scores=====")
     data['save'] = sorted(data['save'], key=lambda x : x['score'], reverse=True)
     for x in range(5):
-        name = data["save"][x]["name"]
-        score = data["save"][x]["score"]
-        suffix = ""
-        
-        if x == 0: suffix = "st"
-        elif x == 1: suffix = "nd"
-        elif x == 2: suffix = "rd"
-        else: suffix = "th"
-          
-        print(f"{x+1}{suffix} place is {name} with a score of {score}.")
+        try:
+            name = data["save"][x]["name"]
+            score = data["save"][x]["score"]
+            suffix = ""
+            
+            if x == 0: suffix = "st"
+            elif x == 1: suffix = "nd"
+            elif x == 2: suffix = "rd"
+            else: suffix = "th"
+              
+            print(f"{x+1}{suffix} place is {name} with a score of {score}.")
+        except:
+            pass
 
 main()
