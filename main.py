@@ -30,7 +30,7 @@ def main():
         
         print(f"Allowed values are the following: ")
         for x in range(len(valid_sides)):
-            print("> " + str(valid_sides[x]))
+            print("- " + str(valid_sides[x]))
         print("")
         dice_sides = int(input("How many sides do you want? "))
         if dice_sides not in valid_sides:
@@ -70,7 +70,7 @@ def dice_roll(player_name: str, score: int):
             score -= 5
     print(f"{player_name}'s current score is {score}!")
     if dice_result_1 == dice_result_2:
-        print("A double was rolled, the dice will be rolled again!")
+        print("A double was rolled, a dice will be rolled again!")
         print()
         dice_roll(player_name, score)
     print()
