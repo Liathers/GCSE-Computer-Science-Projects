@@ -11,6 +11,7 @@ total_rolls = 1
 finished_rolling_dice = False
 even_numbers = [2, 4, 6, 8, 10, 12]
 valid_sides = [6, 10, 20]
+rounds_to_do = 5
 
 def main():
     global dice_sides
@@ -41,7 +42,7 @@ def main():
         player_1_score = dice_roll(player_1, player_1_score)
         player_2_score = dice_roll(player_2, player_2_score)
         total_rolls += 1
-        if total_rolls > 5:
+        if total_rolls > rounds_to_do:
             finished_rolling_dice = True
     if finished_rolling_dice:
         print("All of the die have been rolled!")
