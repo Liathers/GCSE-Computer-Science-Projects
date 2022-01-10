@@ -29,7 +29,9 @@ def main():
         print("=====How many sides?=====")
         
         print(f"Allowed values are the following: ")
-        for x in range(len(valid_sides)): print(">" + str(valid_sides[x]))
+        for x in range(len(valid_sides)):
+            print("> " + str(valid_sides[x]))
+        print("")
         dice_sides = int(input("How many sides do you want? "))
         if dice_sides not in valid_sides:
             print("That is an invalid input")
