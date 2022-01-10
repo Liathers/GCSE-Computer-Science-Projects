@@ -9,7 +9,9 @@ dice_sides = 0
 dice_result = 0
 total_rolls = 1
 finished_rolling_dice = False
-even_numbers = [2, 4, 6, 8, 10, 12]
+
+#dice dependencies
+even_numbers = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 valid_sides = [6, 10, 20]
 rounds_to_do = 5
 
