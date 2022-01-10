@@ -1,10 +1,13 @@
 from random import randint as genint
 from json import dump, load
 
+#player variables
 player_1 = ""
 player_2 = ""
 player_1_score = 0
 player_2_score = 0
+
+#dice processing
 dice_sides = 0
 dice_result = 0
 total_rolls = 1
@@ -104,7 +107,6 @@ def handle_scores(saving: bool, name: str, score: int):
     if saving == True:
         create_save()
         append_score()
-        #print(load_data())
     if saving == False:
         return load_data()
 
